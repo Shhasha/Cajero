@@ -18,21 +18,26 @@ import java.io.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-
+/**
+ * La clase RetirarBolivianos implementa una interfase que ayuda al usuario con
+ * el retiro de dinero de su cuenta de bolivianos. Al ser un extends JFRAME se utiliza para crear
+ * una ventana con características estándar de una ventana de aplicación gráfica
+ * (GUI).
+ */
 public class RetirarBolivianos extends JFrame {
+	// --------------------------------------------------------
+	// Atributos
+	// --------------------------------------------------------
 
 	private static String usuarioCorrespondiente; // IMPORTANTE, DATO GLOBAL usuarioCorrespondiente que es el numero de
 													// archivo que contiene usuarioX.txt que ayudara a abrir otro
 													// archivo mostrando los datos de ese usuario
 	private int eleccionCuenta; // puede ser 1, 2 o 3
 	private String eleccionIdioma;
-
 	private static JTextField mensajeLabel = new JTextField();// guarda el mensaje que emerge en caso de que el usuario
-																// no haya llenado sus datos
+															  // no haya llenado sus datos
 	private static JLabel lblNewLabel_saldo;
 	private static JTextField text_montoRetirar;
-
-	// Datos del usuario
 	private static String usuario; // Variable para almacenar el nombre recibido
 	private static String numCuenta;
 	private static String PIN;
@@ -40,7 +45,15 @@ public class RetirarBolivianos extends JFrame {
 	private static String Bolivianos;
 	private static String Dolares;
 	private static String Euros;
-
+	
+	/**
+	 * Dentro del método constructor creamos toda la parte gráfica del programa que
+	 * contiene: JLabels para enseñar textos, un JTextField para que el usuario
+	 * ingrese el monto que desea retirar. Un teclado con botones que contienen números del
+	 * 0 al 9 los cuales funcionan al tener contacto con ellos se escribe en el
+	 * JTextField que selecciones. Botones para "Aceptar", "Borrar", "Cancelar" y
+	 * "Volver"
+	 */
 	public RetirarBolivianos() {
 		devuelveDatosUsuario();
 		setSize(900, 800);
@@ -67,15 +80,6 @@ public class RetirarBolivianos extends JFrame {
 		panel_1.add(panel_7);
 		panel_7.setLayout(null);
 
-		/*
-		 * JButton btn_1 = new JButton("1"); // Creamos un botón con el texto "1"
-		 * btn_1.setBounds(27, 11, 89, 38); // Configuración de la posición y tamaño del
-		 * botón btn_1.addActionListener(new ActionListener() { // Añadimos un
-		 * ActionListener al botón para manejar su acción public void
-		 * actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el
-		 * botón escribirNumero("1"); // Llamamos al método escribirNumero con el número
-		 * "1" } });
-		 */
 
 		// BOTON 1
 		JButton btn_1 = new JButton("1"); // Creamos un botón con el texto "1"
@@ -90,9 +94,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 4
 		JButton btn_4 = new JButton("4");
 		btn_4.setBounds(27, 60, 89, 38);
-		btn_4.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("4"); // Llamamos al método escribirNumero con el número "1"
+		btn_4.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("4"); 
 			}
 		});
 		panel_7.add(btn_4);
@@ -101,8 +105,8 @@ public class RetirarBolivianos extends JFrame {
 		JButton btn_7 = new JButton("7");
 		btn_7.setBounds(27, 109, 89, 38);
 		btn_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("7"); // Llamamos al método escribirNumero con el número "1"
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("7"); 
 			}
 		});
 		panel_7.add(btn_7);
@@ -110,9 +114,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 2
 		JButton btn_2 = new JButton("2");
 		btn_2.setBounds(126, 11, 89, 38);
-		btn_2.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("2"); // Llamamos al método escribirNumero con el número "1"
+		btn_2.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("2"); 
 			}
 		});
 		panel_7.add(btn_2);
@@ -120,9 +124,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 5
 		JButton btn_5 = new JButton("5");
 		btn_5.setBounds(126, 60, 89, 38);
-		btn_5.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("5"); // Llamamos al método escribirNumero con el número "1"
+		btn_5.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("5"); 
 			}
 		});
 		panel_7.add(btn_5);
@@ -130,9 +134,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 8
 		JButton btn_8 = new JButton("8");
 		btn_8.setBounds(126, 109, 89, 38);
-		btn_8.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("8"); // Llamamos al método escribirNumero con el número "1"
+		btn_8.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("8"); 
 			}
 		});
 		panel_7.add(btn_8);
@@ -140,7 +144,7 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 3
 		JButton btn_3 = new JButton("3");
 		btn_3.setBounds(225, 11, 89, 38);
-		btn_3.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
+		btn_3.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
 				escribirNumero("3"); // Llamamos al método escribirNumero con el número "1"
 			}
@@ -150,9 +154,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 6
 		JButton btn_6 = new JButton("6");
 		btn_6.setBounds(225, 60, 89, 38);
-		btn_6.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("6"); // Llamamos al método escribirNumero con el número "1"
+		btn_6.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("6"); 
 			}
 		});
 		panel_7.add(btn_6);
@@ -160,9 +164,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 9
 		JButton btn_9 = new JButton("9");
 		btn_9.setBounds(225, 109, 89, 38);
-		btn_9.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("9"); // Llamamos al método escribirNumero con el número "1"
+		btn_9.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("9"); 
 			}
 		});
 		panel_7.add(btn_9);
@@ -170,9 +174,9 @@ public class RetirarBolivianos extends JFrame {
 		// BOTON 0
 		JButton btn_0 = new JButton("0");
 		btn_0.setBounds(126, 158, 89, 38);
-		btn_0.addActionListener(new ActionListener() { // Añadimos un ActionListener al botón para manejar su acción
-			public void actionPerformed(ActionEvent e) { // Método que se ejecutará al presionar el botón
-				escribirNumero("0"); // Llamamos al método escribirNumero con el número "1"
+		btn_0.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) { 
+				escribirNumero("0"); 
 			}
 		});
 		panel_7.add(btn_0);
@@ -270,12 +274,7 @@ public class RetirarBolivianos extends JFrame {
 		text_montoRetirar = new JTextField();
 		text_montoRetirar.setBounds(89, 42, 272, 14);
 		panel_opcione.add(text_montoRetirar);
-		/*
-		 * txt_saldo = new JTextField(); // Creamos un JTextField para mostrar los
-		 * números txt_saldo.setBounds(63, 36, 317, 14); // Configuración de la posición
-		 * y tamaño del JTextField panel_6.add(txt_saldo); // Añadimos el JTextField al
-		 * JPanel interno
-		 */
+	
 
 		JLabel lblNewLabel_4_1 = new JLabel("Bs");
 		lblNewLabel_4_1.setBounds(66, 42, 23, 14);
@@ -313,8 +312,6 @@ public class RetirarBolivianos extends JFrame {
 		lblNewLabel.setBounds(97, 11, 633, 40);
 		panel_2.add(lblNewLabel);
 
-		// Crea una instancia de CajeroAutomático con un saldo inicial de $1000
-		// cajero = new CajeroAutomatico(1000);
 	}
 
 	/**
@@ -328,7 +325,7 @@ public class RetirarBolivianos extends JFrame {
 		text_montoRetirar.setText(textoActual + numero); // Concatenamos el número presionado al texto actual y lo
 															// seteamos en el JTextField
 	}
-	
+
 	/**
 	 * El método borrarNumero se activa si presionas el botón "Borrar" Si el
 	 * JTextField en el que estes escribiendo es diferente de vacio obtiene la
@@ -341,9 +338,9 @@ public class RetirarBolivianos extends JFrame {
 			String textoNuevo = textoActual.substring(0, textoActual.length() - 1); // Obtener la cadena sin el último
 																					// carácter
 			text_montoRetirar.setText(textoNuevo); // Establecer el nuevo texto en el JTextField
-			}
+		}
 	}
-	
+
 	/**
 	 * El método borrarTodo se activa si presionas el botón "Cancelar" Borra el
 	 * contenido de JTextField pin y numUsuario
@@ -395,7 +392,15 @@ public class RetirarBolivianos extends JFrame {
 		return 0;
 
 	}
-
+	
+	/**
+	 * Este método abre el archivo que contiene los datos del usuario que inicio
+	 * sesion preguntando a abrirUsuarioCorrespondiente() y almacenando en
+	 * numUsuario, de forma que el nombre de usuario. luego vamos recorriendo las 6
+	 * lineas en las que almacena datos el txt guardando en un arreglo del cual
+	 * luago ingresaremos y sacaremoslos valores para uruariom numCuenta, pin, ci,
+	 * bolivianos, dolares, euros
+	 */
 	private static void devuelveDatosUsuario() {
 		int numUsuario;// número de usuario que inicio sesion
 		numUsuario = abrirUsuarioCorrespondiente();
@@ -475,8 +480,8 @@ public class RetirarBolivianos extends JFrame {
 	 * registroMovimientosCuentaEspañol para el registro de movimientos
 	 * 
 	 * @param nombreArchivo nombre del archivo que contiene los datos del usuario
-	 * @param numeroLinea Linea del archivo con la que trabajaremos (Bolivianos)
-	 * @param montoASumar monto que se restara a la linea del archivo numeroLinea
+	 * @param numeroLinea   Linea del archivo con la que trabajaremos (Bolivianos)
+	 * @param montoASumar   monto que se restara a la linea del archivo numeroLinea
 	 */
 	public static void actualizarLinea(String nombreArchivo, int numeroLinea, double montoASumar) {
 		String BolivianosAntes = Bolivianos;
@@ -560,7 +565,7 @@ public class RetirarBolivianos extends JFrame {
 	 * archivo de registro de movimientos o historial del usuario que se hace el
 	 * retiro y lo registra en el archivo de movimientos
 	 * 
-	 * @param mensaje mensaje o registro de actividad 
+	 * @param mensaje mensaje o registro de actividad
 	 */
 	public static void registroMovimientos(String mensaje) {
 		int numUsuario; // Número de usuario que inició sesión
@@ -584,7 +589,9 @@ public class RetirarBolivianos extends JFrame {
 	 * Método main donde crearemos una instancia de nuestra clase, asignaremos su
 	 * tamaño, cuando el usuario hace clic en el botón de cerrar la ventana la
 	 * aplicación Java se terminará completamente, y la haremos visible
-	 * @param args permite a tu programa recibir argumentos desde la línea de comandos cuando se ejecuta
+	 * 
+	 * @param args permite a tu programa recibir argumentos desde la línea de
+	 *             comandos cuando se ejecuta
 	 */
 	public static void main(String[] args) {
 		devuelveDatosUsuario();

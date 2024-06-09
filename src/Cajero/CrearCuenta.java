@@ -26,7 +26,7 @@ public class CrearCuenta extends JFrame {
 	// --------------------------------------------------------
 
 	private JTextField textField_Usuario;
-	private JTextField textField_Contraseña;
+	private JTextField textField_Contrasenia;
 	private JTextField textField_CI;
 	private JLabel lblNewLabel_NumCuenta;
 	Random random = new Random(); // Crea una instancia de la clase Random
@@ -40,10 +40,10 @@ public class CrearCuenta extends JFrame {
 	private JButton btn_crearCuenta;
 	private static int contadorCuentas;
 	private String usuario;
-	private String contraseña;
+	private String contrasenia;
 	private String ci;
 	private String numCuenta;
-	
+
 	/**
 	 * Dentro del método constructor creamos toda la parte gráfica del programa que
 	 * contiene: JLabels para enseñar textos JTextField para que el usuario ingrese
@@ -289,16 +289,16 @@ public class CrearCuenta extends JFrame {
 		});
 		panel_6.add(textField_Usuario);
 
-		textField_Contraseña = new JTextField();
-		textField_Contraseña.setBounds(167, 76, 230, 14);
+		textField_Contrasenia = new JTextField();
+		textField_Contrasenia.setBounds(167, 76, 230, 14);
 		// Agregar un MouseListener al textField_Contraseña para detectar clics de ratón
-		textField_Contraseña.addMouseListener(new MouseAdapter() {
+		textField_Contrasenia.addMouseListener(new MouseAdapter() {
 			// Método que se ejecuta cuando se hace clic en el textField_Contraseña
 			public void mouseClicked(MouseEvent e) {
-				textFieldActivo = textField_Contraseña; // Asignar el textField_Contraseña como activo
+				textFieldActivo = textField_Contrasenia; // Asignar el textField_Contraseña como activo
 			}
 		});
-		panel_6.add(textField_Contraseña);
+		panel_6.add(textField_Contrasenia);
 
 		textField_CI = new JTextField();
 		textField_CI.setBounds(167, 101, 230, 14);
@@ -333,7 +333,7 @@ public class CrearCuenta extends JFrame {
 		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("CAJERO AUTOMÁTICO");
+		JLabel lblNewLabel = new JLabel("CAJERO AUTOMATICO");
 		lblNewLabel.setBackground(new Color(192, 192, 192));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(192, 192, 192));
@@ -436,14 +436,14 @@ public class CrearCuenta extends JFrame {
 	 */
 	private void faltanDatos() {
 		// Verificar si alguno de los campos está vacío
-		if (textField_Usuario.getText().isEmpty() || textField_Contraseña.getText().isEmpty()
+		if (textField_Usuario.getText().isEmpty() || textField_Contrasenia.getText().isEmpty()
 				|| textField_CI.getText().isEmpty()) {
 			mensajeLabel.setText("Por favor, complete todos los campos.");
 			JOptionPane.showMessageDialog(null, mensajeLabel.getText());
 		} else {
 			// Verificar la longitud de la contraseña
-			String contraseña = textField_Contraseña.getText();
-			if (contraseña.length() < 6) {
+			String contrasenia = textField_Contrasenia.getText();
+			if (contrasenia.length() < 6) {
 				JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
@@ -473,7 +473,7 @@ public class CrearCuenta extends JFrame {
 		int contadorUsuarios = leerContador();
 		usuario = textField_Usuario.getText(); // Obtiene el texto del campo de usuario y lo asigna a la variable
 												// 'usuario'
-		contraseña = textField_Contraseña.getText(); // Obtiene el texto del campo de contraseña y lo asigna a la
+		contrasenia = textField_Contrasenia.getText(); // Obtiene el texto del campo de contraseña y lo asigna a la
 														// variable 'contraseña'
 		ci = textField_CI.getText(); // Obtiene el texto del campo de CI (cédula de identidad) y lo asigna a la
 										// variable 'ci'
@@ -487,8 +487,8 @@ public class CrearCuenta extends JFrame {
 			FileWriter writer = new FileWriter("usuario" + contadorUsuarios + ".txt", true);
 
 			// Escribe los datos del usuario en el archivo, cada dato en una nueva línea
-			writer.write(usuario + "\n" + numCuenta + "\n" + contraseña + "\n" + ci + "\n" + Bolivianos + "\n" + Dolares
-					+ "\n" + Euros + "\n");
+			writer.write(usuario + "\n" + numCuenta + "\n" + contrasenia + "\n" + ci + "\n" + Bolivianos + "\n"
+					+ Dolares + "\n" + Euros + "\n");
 
 			// Cierra el FileWriter para asegurar que los datos se escriban correctamente en
 			// el archivo
@@ -508,7 +508,7 @@ public class CrearCuenta extends JFrame {
 			System.out.println("Error al registrar al jugador: " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * El método borrarNumero se activa si presionas el botón "Borrar" Si el
 	 * JTextField en el que estes escribiendo es diferente de vacio obtiene la
@@ -531,22 +531,24 @@ public class CrearCuenta extends JFrame {
 			 */
 		}
 	}
-	
+
 	/**
 	 * El método borrarTodo se activa si presionas el botón "Cancelar" Borra el
 	 * contenido de JTextField pin y numUsuario
 	 */
 	private void borrarTodo() {
 		textField_Usuario.setText(""); // Establecer el nuevo texto en el JTextField mandandole un String vacio (nada)
-		textField_Contraseña.setText("");
+		textField_Contrasenia.setText("");
 		textField_CI.setText("");
 	}
-	
+
 	/**
 	 * Metodo main donde crearemos una instancia de nuestra clase, asignaremos su
 	 * tamaño, cuando el usuario hace clic en el boton de cerrar la ventana la
 	 * aplicacion Java se terminará completamente, y la haremos visible
-	 * @param args 
+	 * 
+	 * @param args permite a tu programa recibir argumentos desde la línea de
+	 *             comandos cuando se ejecuta
 	 */
 	public static void main(String[] args) {
 		CrearCuenta miVentana = new CrearCuenta();

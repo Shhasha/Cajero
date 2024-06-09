@@ -13,15 +13,21 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La clase DepositarBolivianos implementa una interfase que ayuda al usuario con el
+ * deposito de dinero de su cuenta de bolivianos. Al ser un extends JFRAME se utiliza
+ * para crear una ventana con características estándar de una ventana de
+ * aplicación gráfica (GUI).
+ */
 public class DepositarBolivianos extends JFrame {
-
+	// --------------------------------------------------------
+	// Atributos
+	// --------------------------------------------------------
 	private static JTextField text_montoDepositoBs; // private JTextField txt_saldo;
 	private String montoDeposString;
 	private static JLabel lblNewLabel_saldo;
 	private JTextField mensajeLabel = new JTextField();// guarda el mensaje que emerge en caso de que el usuario no haya
 														// llenado sus datos
-
-	// Datos globales
 	private static String usuarioCorrespondiente; // IMPORTANTE, DATO GLOBAL usuarioCorrespondiente que es el numero de
 													// archivo que contiene usuarioX.txt que ayudara a abrir otro
 													// archivo mostrando los datos de ese usuario
@@ -29,8 +35,6 @@ public class DepositarBolivianos extends JFrame {
 	// cuando cierre sesion deberia desaparecer junto al .txt
 	private int eleccionCuenta; // puede ser 1, 2 o 3
 	private String eleccionIdioma;
-
-	// Datos del usuario
 	private static String usuario; // Variable para almacenar el nombre recibido
 	private static String numCuenta;
 	private static String PIN;
@@ -38,7 +42,15 @@ public class DepositarBolivianos extends JFrame {
 	private static String Bolivianos;
 	private static String Dolares;
 	private static String Euros;
-
+	
+	/**
+	 * Dentro del método constructor creamos toda la parte gráfica del programa que
+	 * contiene: JLabels para enseñar textos, un JTextField para que el usuario
+	 * ingrese el monto que desea depositar. Un teclado con botones que contienen números del
+	 * 0 al 9 los cuales funcionan al tener contacto con ellos se escribe en el
+	 * JTextField que selecciones. Botones para "Aceptar", "Borrar", "Cancelar" y
+	 * "Volver"
+	 */
 	public DepositarBolivianos() {
 		devuelveDatosUsuario();
 		setSize(900, 800);
@@ -352,7 +364,7 @@ public class DepositarBolivianos extends JFrame {
 		text_montoDepositoBs.setText(textoActual + numero); // Concatenamos el número presionado al texto actual y lo
 															// seteamos en el JTextField
 	}
-	
+
 	/**
 	 * El método borrarNumero se activa si presionas el botón "Borrar" Si el
 	 * JTextField en el que estes escribiendo es diferente de vacio obtiene la
@@ -364,10 +376,10 @@ public class DepositarBolivianos extends JFrame {
 		if (textoActual.length() > 0) { // Verificar que la cadena no esté vacía
 			String textoNuevo = textoActual.substring(0, textoActual.length() - 1); // Obtener la cadena sin el último
 																					// carácter
-			text_montoDepositoBs.setText(textoNuevo); 
+			text_montoDepositoBs.setText(textoNuevo);
 		}
 	}
-	
+
 	/**
 	 * El método borrarTodo se activa si presionas el botón "Cancelar" Borra el
 	 * contenido de JTextField pin y numUsuario
@@ -420,7 +432,7 @@ public class DepositarBolivianos extends JFrame {
 		return 0;
 
 	}
-	
+
 	/**
 	 * Este método abre el archivo que contiene los datos del usuario que inicio
 	 * sesion preguntando a abrirUsuarioCorrespondiente() y almacenando en
@@ -467,9 +479,10 @@ public class DepositarBolivianos extends JFrame {
 		Euros = lineas[6];
 
 	}
-	
+
 	/**
-	 * Metodo que ordena los parametros necesarios para llamar al metodo actualizarLinea
+	 * Metodo que ordena los parametros necesarios para llamar al metodo
+	 * actualizarLinea
 	 */
 	private void sumar() {
 
@@ -483,13 +496,15 @@ public class DepositarBolivianos extends JFrame {
 		actualizarLinea(nombreArchivo, 4, saldoSumar);
 
 	}
-	
+
 	/**
-	 * Metodo que actualiza el numeroLinea 4 (bolivianos) del txt restandole montoASumar por el deposito
-	 * Ademas crea una cadena que se envia a registroMovimientosCuentaEspañol para el registro de movimientos
+	 * Metodo que actualiza el numeroLinea 4 (bolivianos) del txt restandole
+	 * montoASumar por el deposito Ademas crea una cadena que se envia a
+	 * registroMovimientosCuentaEspañol para el registro de movimientos
+	 * 
 	 * @param nombreArchivo nombre del archivo que contiene los datos del usuario
-	 * @param numeroLinea Linea del archivo con la que trabajaremos (Bolivianos)
-	 * @param montoASumar monto que se sumara a la linea del archivo numeroLinea
+	 * @param numeroLinea   Linea del archivo con la que trabajaremos (Bolivianos)
+	 * @param montoASumar   monto que se sumara a la linea del archivo numeroLinea
 	 */
 	public static void actualizarLinea(String nombreArchivo, int numeroLinea, double montoASumar) {
 		String BolivianosAntes = Bolivianos;
@@ -562,7 +577,8 @@ public class DepositarBolivianos extends JFrame {
 	 * Metodo quee al ser llamado solicita un parametro, una vez lo tiene abre el
 	 * archivo de registro de movimientos o historial del usuario que se hace el
 	 * deposito y lo registra en el archivo de movimientos
-	 * @param mensaje mensaje o registro de actividad 
+	 * 
+	 * @param mensaje mensaje o registro de actividad
 	 */
 	public static void registroMovimientos(String mensaje) {
 		int numUsuario; // Número de usuario que inició sesión
@@ -586,7 +602,9 @@ public class DepositarBolivianos extends JFrame {
 	 * Método main donde crearemos una instancia de nuestra clase, asignaremos su
 	 * tamaño, cuando el usuario hace clic en el botón de cerrar la ventana la
 	 * aplicación Java se terminará completamente, y la haremos visible
-	 * @param args permite a tu programa recibir argumentos desde la línea de comandos cuando se ejecuta
+	 * 
+	 * @param args permite a tu programa recibir argumentos desde la línea de
+	 *             comandos cuando se ejecuta
 	 */
 	public static void main(String[] args) {
 		devuelveDatosUsuario();

@@ -10,20 +10,25 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La clase DepositarEuros implementa una interfase que ayuda al usuario con el
+ * deposito de dinero de su cuenta de euros. Al ser un extends JFRAME se utiliza
+ * para crear una ventana con características estándar de una ventana de
+ * aplicación gráfica (GUI).
+ */
 public class DepositarEuros extends JFrame {
-
+	// --------------------------------------------------------
+	// Atributos
+	// --------------------------------------------------------
 	private static JTextField text_montoDepositoE; // private JTextField txt_saldo;
 	private String montoDeposString;
 	private static JLabel lblNewLabel_saldo;
 	private JTextField mensajeLabel = new JTextField();// guarda el mensaje que emerge en caso de que el usuario no haya
 														// llenado sus datos
-
-	// Datos globales
 	private static String usuarioCorrespondiente; // IMPORTANTE, DATO GLOBAL usuarioCorrespondiente que es el numero de
 													// archivo que contiene usuarioX.txt que ayudara a abrir otro
 													// archivo mostrando los datos de ese usuario
@@ -31,8 +36,6 @@ public class DepositarEuros extends JFrame {
 	// cuando cierre sesion deberia desaparecer junto al .txt
 	private int eleccionCuenta; // puede ser 1, 2 o 3
 	private String eleccionIdioma;
-
-	// Datos del usuario
 	private static String usuario; // Variable para almacenar el nombre recibido
 	private static String numCuenta;
 	private static String PIN;
@@ -40,7 +43,15 @@ public class DepositarEuros extends JFrame {
 	private static String Bolivianos;
 	private static String Dolares;
 	private static String Euros;
-
+	
+	/**
+	 * Dentro del método constructor creamos toda la parte gráfica del programa que
+	 * contiene: JLabels para enseñar textos, un JTextField para que el usuario
+	 * ingrese el monto que desea depositar. Un teclado con botones que contienen números del
+	 * 0 al 9 los cuales funcionan al tener contacto con ellos se escribe en el
+	 * JTextField que selecciones. Botones para "Aceptar", "Borrar", "Cancelar" y
+	 * "Volver"
+	 */
 	public DepositarEuros() {
 		devuelveDatosUsuario();
 		setSize(900, 800);
@@ -354,7 +365,7 @@ public class DepositarEuros extends JFrame {
 		text_montoDepositoE.setText(textoActual + numero); // Concatenamos el número presionado al texto actual y lo
 															// seteamos en el JTextField
 	}
-	
+
 	/**
 	 * El metodo borrarNumero se activa si presionas el boton "Borrar" Si el
 	 * JTextField en el que estes escribiendo es diferente de vacio obtiene la
@@ -367,7 +378,7 @@ public class DepositarEuros extends JFrame {
 			String textoNuevo = textoActual.substring(0, textoActual.length() - 1); // Obtener la cadena sin el último
 																					// carácter
 			text_montoDepositoE.setText(textoNuevo); // Establecer el nuevo texto en el JTextField
-			}
+		}
 	}
 
 	/**
@@ -421,7 +432,7 @@ public class DepositarEuros extends JFrame {
 		return 0;
 
 	}
-	
+
 	/**
 	 * Este método abre el archivo que contiene los datos del usuario que inicio
 	 * sesion preguntando a abrirUsuarioCorrespondiente() y almacenando en
@@ -468,9 +479,10 @@ public class DepositarEuros extends JFrame {
 		Euros = lineas[6];
 
 	}
-	
+
 	/**
-	 * Metodo que ordena los parametros necesarios para llamar al metodo actualizarLinea
+	 * Metodo que ordena los parametros necesarios para llamar al metodo
+	 * actualizarLinea
 	 */
 	private void sumar() {
 
@@ -484,13 +496,15 @@ public class DepositarEuros extends JFrame {
 		actualizarLinea(nombreArchivo, 6, saldoSumar);
 
 	}
-	
+
 	/**
-	 * Metodo que actualiza el numeroLinea 5 (euros) del txt restandole montoASumar por el deposito
-	 * Ademas crea una cadena que se envia a registroMovimientosCuentaEspañol para el registro de movimientos
+	 * Metodo que actualiza el numeroLinea 5 (euros) del txt restandole montoASumar
+	 * por el deposito Ademas crea una cadena que se envia a
+	 * registroMovimientosCuentaEspañol para el registro de movimientos
+	 * 
 	 * @param nombreArchivo nombre del archivo que contiene los datos del usuario
-	 * @param numeroLinea Linea del archivo con la que trabajaremos (Euros)
-	 * @param montoASumar monto que se sumara a la linea del archivo numeroLinea
+	 * @param numeroLinea   Linea del archivo con la que trabajaremos (Euros)
+	 * @param montoASumar   monto que se sumara a la linea del archivo numeroLinea
 	 */
 	public static void actualizarLinea(String nombreArchivo, int numeroLinea, double montoASumar) {
 		String EurosAntes = Euros;
@@ -522,9 +536,10 @@ public class DepositarEuros extends JFrame {
 				// COLOCAR ESO EN TODOS LOS FRAMES PARA REGISTRAR LOS MOVIMIENTOS
 				fechaHoraFormateada = fechaHoraActual.format(formatter);
 				String m1;
-				m1 = "Se realizo el deposito de " + montoASumar + " €. a " + EurosAntes + " €. su saldo actual es de: " + nuevoValor + " €. " + fechaHoraFormateada;
+				m1 = "Se realizo el deposito de " + montoASumar + " €. a " + EurosAntes + " €. su saldo actual es de: "
+						+ nuevoValor + " €. " + fechaHoraFormateada;
 				registroMovimientos(m1);
-				
+
 				// Actualiza la línea en la lista con el nuevo valor
 				lineas.set(numeroLinea, String.valueOf(nuevoValor));
 				// Actualiza el saldo en la ventana existente
@@ -550,14 +565,15 @@ public class DepositarEuros extends JFrame {
 		} catch (IOException e) {
 			System.out.println("Error al escribir en el archivo: " + e.getMessage());
 		}
-		
+
 	}
 
 	/**
 	 * Metodo quee al ser llamado solicita un parametro, una vez lo tiene abre el
 	 * archivo de registro de movimientos o historial del usuario que se hace el
 	 * deposito y lo registra en el archivo de movimientos
-	 * @param mensaje mensaje o registro de actividad 
+	 * 
+	 * @param mensaje mensaje o registro de actividad
 	 */
 	public static void registroMovimientos(String mensaje) {
 		int numUsuario; // Numero de usuario que inició sesion
@@ -576,12 +592,14 @@ public class DepositarEuros extends JFrame {
 		}
 
 	}
-	
+
 	/**
 	 * Método main donde crearemos una instancia de nuestra clase, asignaremos su
 	 * tamaño, cuando el usuario hace clic en el botón de cerrar la ventana la
 	 * aplicación Java se terminará completamente, y la haremos visible
-	 * @param args permite a tu programa recibir argumentos desde la línea de comandos cuando se ejecuta
+	 * 
+	 * @param args permite a tu programa recibir argumentos desde la línea de
+	 *             comandos cuando se ejecuta
 	 */
 	public static void main(String[] args) {
 		devuelveDatosUsuario();
